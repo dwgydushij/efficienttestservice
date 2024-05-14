@@ -1,2 +1,3 @@
-const currentDate = new Date();
-console.log(currentDate); // Fri 2024-04-05T09:17:00.000Z
+// Setup the client
+const aptosConfig = new AptosConfig({ network: APTOS_NETWORK });
+const aptos = new Aptos(aptosConfig);
