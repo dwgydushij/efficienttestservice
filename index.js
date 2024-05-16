@@ -1,25 +1,14 @@
-const cocktailShakerSort = (arr) => {
-  let swapped = true;
-  let start = 0;
-  let end = arr.length - 1;
-  while (swapped) {
-    swapped = false;
-    for (let i = start; i < end; i++) {
-      if (arr[i] > arr[i + 1]) {
-        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-        swapped = true;
+function lengthOfLIS(nums) {
+  if (nums.length === 0) return 0;
+  const dp = new Array(nums.length).fill(1);
+  let max = 1;
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (nums[i] > nums[j]) {
+        dp[i] = Math.max(dp[i], dp[j] + 1);
+        max = Math.max(max, dp[i]);
       }
     }
-    if (!swapped) break;
-    swapped = false;
-    end--;
-    for (let i = end - 1; i >= start; i--) {
-      if (arr[i] > arr[i + 1]) {
-        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-        swapped = true;
-      }
-    }
-    start++;
   }
-  return arr;
-};
+  return max;
+}
